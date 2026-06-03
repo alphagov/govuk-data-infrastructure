@@ -54,11 +54,5 @@ resource "google_dataform_repository_workflow_config" "config" {
       schema   = "fastly_processing"
       name     = "fastly_processing"
     }
-
-    included_targets {
-      database = "gds-bq-processing"
-      schema   = "fastly_processing"
-      name     = "process_partition"
-    }
   }
 }

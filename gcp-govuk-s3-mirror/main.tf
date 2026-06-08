@@ -20,3 +20,16 @@ terraform {
 provider "google" {
   project = "govuk-s3-mirror"
 }
+
+module "managed_project" {
+  source = "../modules/gcp-project-init"
+
+  project_id   = "govuk-s3-mirror"
+  project_name = "govuk-s3-mirror"
+  project_owners = [
+    "group:govgraph-developers@digital.cabinet-office.gov.uk",
+    "group:govuk-gcp-access@digital.cabinet-office.gov.uk",
+  ]
+  project_editors = ["serviceAccount:384988117066-compute@developer.gserviceaccount.com"]
+  project_viewers = []
+}

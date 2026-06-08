@@ -1,0 +1,24 @@
+---
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-merge-conflict
+  - repo: git@github.com:Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+        args: ['--baseline', '.secrets.baseline']
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.105.0
+    hooks:
+      - id: terraform_fmt
+  - repo: local
+    hooks:
+      - id: lint_docs
+        name: Lint docs
+        language: unsupported
+        entry: make
+        args: [lint_docs]
+        files: "docs/.*"
+        types: ["markdown"]

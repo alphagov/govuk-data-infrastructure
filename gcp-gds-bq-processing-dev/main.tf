@@ -22,7 +22,7 @@ provider "google" {
 }
 
 module "managed_project" {
-  source = "../../shared-modules/gcp-project-init"
+  source = "../modules/gcp-project-init"
 
   project_id   = "gds-bq-processing-dev"
   project_name = "gds-bq-processing-dev"

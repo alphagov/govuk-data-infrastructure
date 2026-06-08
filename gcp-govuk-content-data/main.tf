@@ -20,3 +20,20 @@ terraform {
 provider "google" {
   project = "govuk-content-data"
 }
+
+module "managed_project" {
+  source = "../modules/gcp-project-init"
+
+  project_id   = "govuk-content-data"
+  project_name = "govuk-content-data"
+  project_owners = [
+    "group:gcp-data-infrastructure-owners@digital.cabinet-office.gov.uk",
+    "serviceAccount:govuk-content-data-ga4@govuk-content-data.iam.gserviceaccount.com",
+  ]
+  project_editors = [
+    "group:gcp-data-infrastructure-editors@digital.cabinet-office.gov.uk",
+    "serviceAccount:760441133636-compute@developer.gserviceaccount.com",
+    "serviceAccount:govuk-content-data@appspot.gserviceaccount.com",
+  ]
+  project_viewers = ["group:gcp-data-infrastructure-viewers@digital.cabinet-office.gov.uk"]
+}

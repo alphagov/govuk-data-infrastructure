@@ -5,7 +5,7 @@ It sets up a dataset called `data_access_log` in the specified project containin
 
 A configurable allow-list table also exists in that dataset called `authorised_users`. Any users which have queried a table in the project who are not also in `authorised_users` will result in that read being captured in the table `unauthorised_access` and an alert email being sent.
 
-It could eventually move to `terraform/shared-modules` once more mature and tested. The required Google Cloud API services would need to be managed directly by module in this case.
+It could eventually move to `modules` once more mature and tested. The required Google Cloud API services would need to be managed directly by module in this case.
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 

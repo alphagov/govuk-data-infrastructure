@@ -20,3 +20,13 @@ terraform {
 provider "google" {
   project = "gds-bq-reporting"
 }
+
+module "managed_project" {
+  source = "../modules/gcp-project-init"
+
+  project_id      = "gds-bq-reporting"
+  project_name    = "gds-bq-reporting"
+  project_owners  = ["group:gcp-gds-bq-reporting-owners@digital.cabinet-office.gov.uk"]
+  project_editors = ["group:gcp-gds-bq-reporting-editors@digital.cabinet-office.gov.uk"]
+  project_viewers = ["group:gcp-gds-bq-reporting-viewers@digital.cabinet-office.gov.uk"]
+}

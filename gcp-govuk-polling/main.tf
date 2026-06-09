@@ -20,3 +20,13 @@ terraform {
 provider "google" {
   project = "govuk-polling"
 }
+
+module "managed_project" {
+  source = "../modules/gcp-project-init"
+
+  project_id      = "govuk-polling"
+  project_name    = "GOVUK Polling"
+  project_owners  = ["group:gcp-data-infrastructure-owners@digital.cabinet-office.gov.uk"]
+  project_editors = ["group:gcp-data-infrastructure-editors@digital.cabinet-office.gov.uk"]
+  project_viewers = ["group:gcp-data-infrastructure-viewers@digital.cabinet-office.gov.uk"]
+}

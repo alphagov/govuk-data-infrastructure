@@ -15,7 +15,7 @@ If you use this module in your workspace you should add its path to your `trigge
 ```hcl
 trigger_patterns = [
   ..., # your existing paths
-  "/terraform/shared-modules/gcp-project-init/**/*",
+  "/modules/gcp-project-init/**/*",
 ]
 ```
 
@@ -25,7 +25,7 @@ trigger_patterns = [
 `main.tf`
 ```hcl
 module "managed_project" {
-  source = "../../shared-modules/gcp-project-init"
+  source = "../modules/gcp-project-init"
 
   project_id   = "my-project-id"
   project_name = "my-project-name"
@@ -38,7 +38,7 @@ Importing the project configuration is quite straight-forward (see `imports.tf` 
 `main.tf`
 ```hcl
 module "managed_project" {
-  source = "../../shared-modules/gcp-project-init"
+  source = "../-modules/gcp-project-init"
 
   project_id   = "my-project-id"
   project_name = "my-project-name"
@@ -59,11 +59,11 @@ import {
 ```
 
 ### Overriding defaults
-The terraform SA will _always_ be added as project owner whenever you use this module, even if `project_owners` is empty. The default value is set to `terraform-cloud-production@govuk-production.iam.gserviceaccount` but you can change the terraform SA used by specifying a value for `terraform_service_account`. Similarly, the `billing_account` and `folder_id` have default values that work for the Insights & Analytics Team but you can override these values if you need to [see USAGE.md](/terraform/shared-modules/gcp-project-init/USAGE.md). For example - 
+The terraform SA will _always_ be added as project owner whenever you use this module, even if `project_owners` is empty. The default value is set to `terraform-cloud-production@govuk-production.iam.gserviceaccount` but you can change the terraform SA used by specifying a value for `terraform_service_account`. Similarly, the `billing_account` and `folder_id` have default values that work for the Insights & Analytics Team but you can override these values if you need to [see USAGE.md](/modules/gcp-project-init/USAGE.md). For example - 
 
 ```hcl
 module "managed_project" {
-  source = "../../shared-modules/gcp-project-init"
+  source = "../modules/gcp-project-init"
 
   project_id   = "my-project-id"
   project_name = "my-project-name"

@@ -29,17 +29,17 @@ variable "terraform_service_account" {
 variable "project_owners" {
   description = "A list of IAM members (users, groups, or SAs) to be granted roles/owner."
   type        = list(string)
-  default     = []
+  default     = ["group:gcp-data-infrastructure-owners@digital.cabinet-office.gov.uk"]
 }
 
 variable "project_editors" {
   description = "A list of IAM members (users, groups, or SAs) to be granted roles/editor."
   type        = list(string)
-  default     = []
+  default     = ["group:gcp-data-infrastructure-editors@digital.cabinet-office.gov.uk"]
 }
 
 variable "project_viewers" {
   description = "A list of IAM members (users, groups, or SAs) to be granted roles/viewer."
   type        = list(string)
-  default     = []
+  default     = ["group:gcp-data-infrastructure-viewers@digital.cabinet-office.gov.uk"]
 }

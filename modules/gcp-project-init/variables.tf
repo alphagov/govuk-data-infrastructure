@@ -26,6 +26,12 @@ variable "terraform_service_account" {
   default     = "serviceAccount:terraform-cloud-production@govuk-production.iam.gserviceaccount.com"
 }
 
+variable "team_admin_group" {
+  description = "The group that should always be added as roles/owner to all projects."
+  type        = string
+  default     = "group:gcp-data-infrastructure-owners@digital.cabinet-office.gov.uk"
+}
+
 variable "project_owners" {
   description = "A list of IAM members (users, groups, or SAs) to be granted roles/owner."
   type        = list(string)
@@ -42,4 +48,8 @@ variable "project_viewers" {
   description = "A list of IAM members (users, groups, or SAs) to be granted roles/viewer."
   type        = list(string)
   default     = ["group:gcp-data-infrastructure-viewers@digital.cabinet-office.gov.uk"]
+}
+
+locals {
+  all_project_owners = distinct(concat([var.team_admin_group], var.project_owners, [var.terraform_service_account]))
 }

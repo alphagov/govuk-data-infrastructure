@@ -2,10 +2,7 @@ resource "google_project_iam_binding" "project_owners" {
   project = google_project.project.project_id
   role    = "roles/owner"
 
-  members = concat(
-    [var.terraform_service_account],
-    var.project_owners
-  )
+  members = local.all_project_owners
 }
 
 resource "google_project_iam_binding" "project_editors" {

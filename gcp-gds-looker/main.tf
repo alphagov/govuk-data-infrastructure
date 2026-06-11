@@ -20,3 +20,14 @@ terraform {
 provider "google" {
   project = "gds-looker"
 }
+
+module "managed_project" {
+  source = "../modules/gcp-project-init"
+
+  project_id   = "gds-looker"
+  project_name = "gds-looker"
+
+  project_owners  = ["group:gcp-gds-looker-owners@digital.cabinet-office.gov.uk"]
+  project_editors = []
+  project_viewers = []
+}

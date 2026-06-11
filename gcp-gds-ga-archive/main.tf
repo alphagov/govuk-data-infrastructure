@@ -20,3 +20,17 @@ terraform {
 provider "google" {
   project = "gds-ga-archive"
 }
+
+module "managed_project" {
+  source = "../modules/gcp-project-init"
+
+  project_id   = "gds-ga-archive"
+  project_name = "gds-ga-archive"
+
+  project_owners = ["group:gcp-data-infrastructure-owners@digital.cabinet-office.gov.uk"]
+  project_editors = [
+    "group:gcp-data-infrastructure-editors@digital.cabinet-office.gov.uk",
+    "serviceAccount:analytics-processing-dev@system.gserviceaccount.com",
+  ]
+  project_viewers = ["group:gcp-data-infrastructure-viewers@digital.cabinet-office.gov.uk"]
+}

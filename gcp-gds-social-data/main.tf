@@ -20,3 +20,18 @@ terraform {
 provider "google" {
   project = "gds-social-data"
 }
+
+module "managed_project" {
+  source = "../modules/gcp-project-init"
+
+  project_id   = "gds-social-data"
+  project_name = "gds-social-data"
+
+  project_owners = ["group:gcp-data-infrastructure-owners@digital.cabinet-office.gov.uk"]
+  project_editors = [
+    "group:gcp-data-infrastructure-editors@digital.cabinet-office.gov.uk",
+    "serviceAccount:1031179907628-compute@developer.gserviceaccount.com",
+    "serviceAccount:gds-social-data@appspot.gserviceaccount.com",
+  ]
+  project_viewers = ["group:gcp-data-infrastructure-viewers@digital.cabinet-office.gov.uk"]
+}

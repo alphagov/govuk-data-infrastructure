@@ -20,3 +20,18 @@ terraform {
 provider "google" {
   project = "sde-consent-api"
 }
+
+module "managed_project" {
+  source = "../modules/gcp-project-init"
+
+  project_id   = "sde-consent-api"
+  project_name = "Single Consent service"
+
+  project_owners = ["group:gcp-data-infrastructure-owners@digital.cabinet-office.gov.uk"]
+  project_editors = [
+    "group:gcp-data-infrastructure-editors@digital.cabinet-office.gov.uk",
+    "serviceAccount:832060047369-compute@developer.gserviceaccount.com",
+    "serviceAccount:sde-consent-api@appspot.gserviceaccount.com",
+  ]
+  project_viewers = ["group:gcp-data-infrastructure-viewers@digital.cabinet-office.gov.uk"]
+}

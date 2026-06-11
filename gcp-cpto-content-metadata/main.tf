@@ -20,3 +20,22 @@ terraform {
 provider "google" {
   project = "cpto-content-metadata"
 }
+
+module "managed_project" {
+  source = "../modules/gcp-project-init"
+
+  project_id   = "cpto-content-metadata"
+  project_name = "cpto-content-metadata"
+
+  project_owners = ["group:gcp-data-infrastructure-owners@digital.cabinet-office.gov.uk"]
+  project_editors = [
+    "group:gcp-data-infrastructure-editors@digital.cabinet-office.gov.uk",
+    "serviceAccount:cpto-content-metadata@appspot.gserviceaccount.com",
+    "serviceAccount:673804617052-compute@developer.gserviceaccount.com",
+  ]
+  project_viewers = [
+    "group:gcp-data-infrastructure-viewers@digital.cabinet-office.gov.uk",
+    "serviceAccount:wif-ner-model-api-deployment@cpto-content-metadata.iam.gserviceaccount.com",
+    "serviceAccount:wif-govner-streamlit-app@cpto-content-metadata.iam.gserviceaccount.com",
+  ]
+}

@@ -20,3 +20,18 @@ terraform {
 provider "google" {
   project = "govuk-bigquery-analytics"
 }
+
+module "managed_project" {
+  source = "../modules/gcp-project-init"
+
+  project_id   = "govuk-bigquery-analytics"
+  project_name = "GOV-UK BigQuery analytics"
+
+  project_owners = ["group:gcp-data-infrastructure-owners@digital.cabinet-office.gov.uk"]
+  project_editors = [
+    "group:gcp-data-infrastructure-editors@digital.cabinet-office.gov.uk",
+    "serviceAccount:1052267805917-compute@developer.gserviceaccount.com",
+    "serviceAccount:1052267805917-pibne89cocs3urf43c0621q10un7tgen@developer.gserviceaccount.com",
+  ]
+  project_viewers = ["group:gcp-data-infrastructure-viewers@digital.cabinet-office.gov.uk"]
+}

@@ -28,7 +28,7 @@ module "managed_project" {
   project_name   = "govuk-user-feedback"
   project_owners = ["group:gcp-govuk-user-feedback-owners@digital.cabinet-office.gov.uk"]
   project_editors = [
-    "group:data-engineering@govuk-user-feedback.iam.gserviceaccount.com",
+    "serviceAccount:data-engineering@govuk-user-feedback.iam.gserviceaccount.com",
     "serviceAccount:1011669116237-compute@developer.gserviceaccount.com",
     "serviceAccount:data-engineering@govuk-user-feedback.iam.gserviceaccount.com",
   ]

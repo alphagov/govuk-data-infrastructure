@@ -33,4 +33,5 @@ module "managed_project" {
     "group:gcp-gds-bq-processing-dev-editors@digital.cabinet-office.gov.uk",
     "serviceAccount:912027178151-compute@developer.gserviceaccount.com",
   ]
+  project_viewers = ["group:gcp-gds-bq-processing-dev-viewers@digital.cabinet-office.gov.uk"]
 }

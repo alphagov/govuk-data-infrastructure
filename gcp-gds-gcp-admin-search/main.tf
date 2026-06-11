@@ -20,3 +20,19 @@ terraform {
 provider "google" {
   project = "gds-gcp-admin-search"
 }
+
+module "managed_project" {
+  source = "../modules/gcp-project-init"
+
+  project_id   = "gds-gcp-admin-search"
+  project_name = "GDS-GCP-Admin-Search"
+
+  billing_account = "0108BC-8A2FAF-28474C"
+
+  project_owners = ["group:gcp-data-infrastructure-owners@digital.cabinet-office.gov.uk"]
+  project_editors = [
+    "group:gcp-data-infrastructure-editors@digital.cabinet-office.gov.uk",
+    "serviceAccount:73231474837-compute@developer.gserviceaccount.com",
+  ]
+  project_viewers = ["group:gcp-data-infrastructure-viewers@digital.cabinet-office.gov.uk"]
+}

@@ -1,5 +1,6 @@
 locals {
-  gcp_project_id = "ga4-aggregate-analytics"
+  gcp_project_id                                = "ga4-aggregate-analytics"
+  processing_project_pipeline_executor_sa_email = "aggregate-analytics-executor@gds-bq-processing.iam.gserviceaccount.com"
 }
 
 terraform {

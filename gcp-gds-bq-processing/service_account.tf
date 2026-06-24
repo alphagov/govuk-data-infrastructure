@@ -4,3 +4,10 @@ resource "google_service_account" "data_processing" {
   project      = google_project.project.project_id
   description  = "" # has to match existing
 }
+
+resource "google_service_account" "aggregate_analytics_pipeline_executor" {
+  project      = google_project.project.project_id
+  account_id   = "aggregate-analytics-executor"
+  display_name = "Aggregate Analytics Pipeline Executor"
+  description  = "Service account used by the GA4 Aggregate Analytics pipeline in gds-bq-processing to execute BigQuery jobs in the ga4-aggregate-analytics project"
+}

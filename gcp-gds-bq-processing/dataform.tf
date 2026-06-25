@@ -1,3 +1,5 @@
+# Fastly
+
 resource "google_dataform_repository" "fastly_processing" {
   provider = google-beta
   project  = google_project.project.project_id
@@ -61,4 +63,27 @@ resource "google_dataform_repository_workflow_config" "config" {
       name     = "process_partition"
     }
   }
+}
+
+# GA4
+resource "google_dataform_repository" "govuk_ga4_processing" {
+  provider = google-beta
+  project  = google_project.project.project_id
+  region   = "europe-west2"
+  name     = "govuk_ga4_processing"
+
+  git_remote_settings {
+    url                                 = "https://github.com/alphagov/ga4-dataform"
+    default_branch                      = "main"
+    authentication_token_secret_version = "projects/${google_project.project.number}/secrets/dataform-git/versions/latest" # pragma: allowlist secret
+  }
+
+  workspace_compilation_overrides {
+    default_database = "gds-bq-processing-dev"
+    schema_suffix    = ""
+    table_prefix     = ""
+  }
+
+  service_account = google_service_account.data_processing_dev.email
+
 }

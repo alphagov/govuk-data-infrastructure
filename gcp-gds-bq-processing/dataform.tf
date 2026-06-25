@@ -73,7 +73,7 @@ resource "google_dataform_repository" "govuk_ga4_processing" {
   name     = "govuk_ga4_processing"
 
   git_remote_settings {
-    url                                 = "https://github.com/alphagov/ga4-dataform"
+    url                                 = "https://github.com/alphagov/ga4-dataform.git"
     default_branch                      = "main"
     authentication_token_secret_version = "projects/${google_project.project.number}/secrets/dataform-git/versions/latest" # pragma: allowlist secret
   }

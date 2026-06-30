@@ -58,7 +58,7 @@ resource "google_dataform_repository_workflow_config" "aggregate_analytics_daily
 
   name = "aggregate-analytics-daily"
 
-  release_config = google_dataform_repository_release_config.aggregate_analytics_production.name
+  release_config = google_dataform_repository_release_config.aggregate_analytics_production.id
   cron_schedule  = "0 8-14 * * *"
   time_zone      = "Europe/London"
 

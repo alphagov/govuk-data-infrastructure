@@ -29,10 +29,14 @@ resource "google_dataform_repository_release_config" "aggregate_analytics_produc
   name       = "aggregate-analytics-production"
 
   git_commitish = "IA-2955-aggregate-data"
+  cron_schedule = "0 7 * * *"
+  time_zone     = "Europe/London"
 
   code_compilation_config {
     default_database = "ga4-aggregate-analytics"
     default_location = "europe-west2"
+    default_schema   = "govuk_ga4_processing"
+    assertion_schema = "govuk_ga4_processing"
 
     # Overrides parameters in workflow_settings.yaml
     vars = {
@@ -59,7 +63,7 @@ resource "google_dataform_repository_workflow_config" "aggregate_analytics_daily
   name = "aggregate-analytics-daily"
 
   release_config = google_dataform_repository_release_config.aggregate_analytics_production.id
-  cron_schedule  = "0 8-14 * * *"
+  cron_schedule  = "0 8-13 * * *"
   time_zone      = "Europe/London"
 
   invocation_config {

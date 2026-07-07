@@ -1,0 +1,15 @@
+# Terraform
+.terraform/
+**/.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+.terraform.lock.hcl
+
+# Local environment
+.env
+.env.*
+
+# OS files
+.DS_Store

@@ -35,3 +35,12 @@ module "managed_project" {
   ]
   project_viewers = ["group:gcp-gds-bq-processing-dev-viewers@digital.cabinet-office.gov.uk"]
 }
+
+module "scheduled_query_monitoring" {
+  source = "../modules/scheduled-query-monitoring"
+
+  project_id                      = "gds-bq-processing-dev"
+  notification_email_address      = data.google_secret_manager_secret_version.slack_alert_channel_email_address.secret_data
+  documentation_link_display_name = "Confluence Documentation"
+  documentation_link_url          = "https://gov-uk.atlassian.net/wiki/spaces/GIAT/pages/5283676161/GA4+DataForm+Dev+Prod+Environment+set+up+and+Configuration"
+}

@@ -37,3 +37,12 @@ module "managed_project" {
   ]
   project_viewers = ["group:gcp-data-infrastructure-viewers@digital.cabinet-office.gov.uk"]
 }
+
+module "scheduled_query_monitoring" {
+  source = "../modules/scheduled-query-monitoring"
+
+  project_id                      = "govuk-content-data"
+  notification_email_address      = data.google_secret_manager_secret_version.slack_alert_channel_email_address.secret_data
+  documentation_link_display_name = "Data Community Technical Documentation"
+  documentation_link_url          = "https://docs.data-community.publishing.service.gov.uk/tools/google-cloud-platform/gcp-projects/#govuk-content-data"
+}

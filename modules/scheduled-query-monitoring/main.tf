@@ -8,15 +8,15 @@ resource "google_monitoring_notification_channel" "notification_email" {
   }
 }
 
-resource "google_monitoring_alert_policy" "scheduled_query_monitoring" {
+# Alert Policy for Scheduled Query run failures
+resource "google_monitoring_alert_policy" "dts_failure_alert" {
   project      = var.project_id
-  display_name = "CRITICAL: Scheduled Query Monitoring Alert"
+  display_name = "CRITICAL: Scheduled Query Failure"
   combiner     = "OR"
   severity     = "CRITICAL"
 
   conditions {
-    display_name = "Scheduled query failed"
-
+    display_name = "Scheduled Query Failed"
     condition_threshold {
       filter          = "resource.type=\"bigquery_dts_config\" AND metric.type=\"bigquerydatatransfer.googleapis.com/transfer_config/completed_runs\" AND metric.labels.completion_state=\"FAILED\""
       duration        = "0s"
@@ -34,6 +34,33 @@ resource "google_monitoring_alert_policy" "scheduled_query_monitoring" {
     }
   }
 
+  alert_strategy {
+    notification_rate_limit {
+      period = "3600s"
+    }
+  }
+
+  documentation {
+    content   = "One or more scheduled queries in this project failed. Review the affected transfer configuration and project permissions for details."
+    mime_type = "text/markdown"
+    subject   = "Scheduled Query Monitoring Alert"
+
+    links {
+      display_name = var.documentation_link_display_name
+      url          = var.documentation_link_url
+    }
+  }
+
+  notification_channels = [google_monitoring_notification_channel.notification_email.name]
+}
+
+# Alert Policy for Scheduled Query permissions issues
+resource "google_monitoring_alert_policy" "dts_permissions_alert" {
+  project      = var.project_id
+  display_name = "CRITICAL: Scheduled Query Permission Issue"
+  combiner     = "OR"
+  severity     = "CRITICAL"
+
   conditions {
     display_name = "Scheduled query permission issue"
 
@@ -41,11 +68,11 @@ resource "google_monitoring_alert_policy" "scheduled_query_monitoring" {
       filter = <<-EOT
         resource.type = "bigquery_dts_config"
         AND (
-          protoPayload.status.message =~ "permission"
-          OR protoPayload.status.message =~ "Permission"
-          OR protoPayload.status.message =~ "unauthorized"
-          OR protoPayload.status.message =~ "not authorized"
-          OR protoPayload.status.message =~ "forbidden"
+          jsonPayload.message =~ "permission"
+          OR jsonPayload.message =~ "Permission"
+          OR jsonPayload.message =~ "unauthorized"
+          OR jsonPayload.message =~ "not authorized"
+          OR jsonPayload.message =~ "forbidden"
         )
       EOT
     }
@@ -57,10 +84,8 @@ resource "google_monitoring_alert_policy" "scheduled_query_monitoring" {
     }
   }
 
-  notification_channels = [google_monitoring_notification_channel.notification_email.name]
-
   documentation {
-    content   = "One or more scheduled queries in this project failed or could not run because of insufficient permissions. Review the affected transfer configuration and project permissions for details."
+    content   = "One or more scheduled queries in this project could not run because of insufficient permissions. Review the affected transfer configuration and project permissions for details."
     mime_type = "text/markdown"
     subject   = "Scheduled Query Monitoring Alert"
 
@@ -69,4 +94,6 @@ resource "google_monitoring_alert_policy" "scheduled_query_monitoring" {
       url          = var.documentation_link_url
     }
   }
+
+  notification_channels = [google_monitoring_notification_channel.notification_email.name]
 }

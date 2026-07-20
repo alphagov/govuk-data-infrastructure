@@ -18,6 +18,5 @@
 
 | Name | Description |
 |------|-------------|
-| <a name="output_alert_policy_name"></a> [alert\_policy\_name](#output\_alert\_policy\_name) | The generated monitoring alert policy name. |
 | <a name="output_notification_channel_name"></a> [notification\_channel\_name](#output\_notification\_channel\_name) | The generated monitoring notification channel name. |
 <!-- END_TF_DOCS -->

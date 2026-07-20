@@ -34,12 +34,6 @@ resource "google_monitoring_alert_policy" "dts_failure_alert" {
     }
   }
 
-  alert_strategy {
-    notification_rate_limit {
-      period = "3600s"
-    }
-  }
-
   documentation {
     content   = "One or more scheduled queries in this project failed. Review the affected transfer configuration and project permissions for details."
     mime_type = "text/markdown"

@@ -28,7 +28,7 @@ resource "google_dataform_repository_release_config" "aggregate_analytics_produc
   repository = google_dataform_repository.govuk_ga4_processing.name
   name       = "aggregate-analytics-production"
 
-  git_commitish = "IA-2955-aggregate-data"
+  git_commitish = "main"
   cron_schedule = "0 7 * * *"
   time_zone     = "Europe/London"
 

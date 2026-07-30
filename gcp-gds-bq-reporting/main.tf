@@ -1,3 +1,7 @@
+locals {
+  project_id = "gds-bq-reporting"
+}
+
 terraform {
   cloud {
     organization = "govuk"

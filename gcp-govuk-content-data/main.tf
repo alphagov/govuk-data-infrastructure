@@ -1,3 +1,7 @@
+locals {
+  project_id = "govuk-content-data"
+}
+
 terraform {
   cloud {
     organization = "govuk"

@@ -74,8 +74,9 @@ resource "google_monitoring_alert_policy" "dts_permissions_alert" {
 
   alert_strategy {
     notification_rate_limit {
-      period = "3600s"
+      period = "3600s" // one every 24 hours
     }
+    auto_close = "3600s" // close after 24 hours
   }
 
   documentation {

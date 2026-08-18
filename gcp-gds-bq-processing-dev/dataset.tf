@@ -37,3 +37,8 @@ resource "google_bigquery_dataset" "fastly_dataform_assertions" {
   dataset_id = "fastly_dataform_assertions"
   location   = "europe-west2"
 }
+
+resource "google_bigquery_dataset" "fastly_reference_data_dev" {
+  dataset_id = "fastly_reference_data_dev"
+  location   = "europe-west2"
+}

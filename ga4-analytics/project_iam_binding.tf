@@ -46,8 +46,7 @@ resource "google_project_iam_binding" "gds_bigquery_user" {
   project = google_project.project.project_id
   role    = google_project_iam_custom_role.gds_bigquery_user.name
   members = [
-    "domain:digital.cabinet-office.gov.uk",
-    "user:arran.gosal@merkle.com",
+    "domain:digital.cabinet-office.gov.uk"
   ]
 }
 

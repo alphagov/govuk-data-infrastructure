@@ -2,7 +2,7 @@ terraform {
   cloud {
     organization = "govuk"
     workspaces {
-      project = "govuk-data-engineering"
+      project = "govuk-data-infrastructure"
       name    = "gcp-single-consent-api-dev"
     }
   }

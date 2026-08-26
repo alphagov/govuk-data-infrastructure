@@ -18,6 +18,10 @@ provider "google" {
   project = "ga4-analytics-352613"
 }
 
+resource "tfe_project" "data-infrastructure-project" {
+  name = "govuk-data-infrastructure"
+}
+
 resource "google_project" "project" {
   name            = "GA4 Analytics"
   project_id      = "ga4-analytics-352613"

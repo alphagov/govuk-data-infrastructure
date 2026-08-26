@@ -19,7 +19,8 @@ provider "google" {
 }
 
 resource "tfe_project" "data-infrastructure-project" {
-  name = "govuk-data-infrastructure"
+  organization = "govuk"
+  name         = "govuk-data-infrastructure"
 }
 
 resource "google_project" "project" {

@@ -30,3 +30,10 @@ resource "google_project_iam_binding" "code_viewers" {
     "group:gcp-gds-bq-processing-code-viewers@digital.cabinet-office.gov.uk",
   ]
 }
+
+resource "google_bigquery_dataset_iam_member" "processing_bigquery_read_access" {
+  project    = google_project.project.project_id
+  dataset_id = "govuk_ga4_processing"
+  role       = "roles/bigquery.dataViewer"
+  member     = "serviceAccount:service-702876067064@gcp-sa-dataform.iam.gserviceaccount.com" # govuk-airflow-test: Dataform read access for pipeline testing
+}

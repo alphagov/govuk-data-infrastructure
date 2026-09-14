@@ -34,6 +34,10 @@ resource "google_monitoring_alert_policy" "dts_failure_alert" {
     }
   }
 
+  alert_strategy {
+    auto_close = "3600s" // close after 24 hours
+  }
+
   documentation {
     content   = "One or more scheduled queries in this project failed. Review the affected transfer configuration and project permissions for details."
     mime_type = "text/markdown"

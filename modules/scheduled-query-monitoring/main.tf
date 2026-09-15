@@ -1,3 +1,11 @@
+locals {
+  # Constructs: AND (resource.labels.config_id != "config-id-1" AND resource.labels.config_id != "config-id-2")
+  allow_list_exclude_condition = length(var.allow_list) > 0 ? format(
+    " AND (%s)",
+    join(" AND ", [for id in var.allow_list : format("resource.labels.config_id != \"%s\"", id)])
+  ) : ""
+}
+
 resource "google_monitoring_notification_channel" "notification_email" {
   project      = var.project_id
   display_name = "Notification Email Channel"
@@ -18,7 +26,7 @@ resource "google_monitoring_alert_policy" "dts_failure_alert" {
   conditions {
     display_name = "Scheduled Query Failed"
     condition_threshold {
-      filter          = "resource.type=\"bigquery_dts_config\" AND metric.type=\"bigquerydatatransfer.googleapis.com/transfer_config/completed_runs\" AND metric.labels.completion_state=\"FAILED\""
+      filter          = "resource.type=\"bigquery_dts_config\" AND metric.type=\"bigquerydatatransfer.googleapis.com/transfer_config/completed_runs\" AND metric.labels.completion_state=\"FAILED\"${local.allow_list_exclude_condition}"
       duration        = "0s"
       comparison      = "COMPARISON_GT"
       threshold_value = 0

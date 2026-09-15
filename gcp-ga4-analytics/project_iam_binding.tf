@@ -54,9 +54,6 @@ resource "google_project_iam_binding" "gds_bigquery_read_access" {
   project = google_project.project.project_id
   role    = google_project_iam_custom_role.gds_bigquery_read_access.name
   members = [
-    "serviceAccount:analytics-events-pipeline@search-api-v2-integration.iam.gserviceaccount.com",
-    "serviceAccount:analytics-events-pipeline@search-api-v2-production.iam.gserviceaccount.com",
-    "serviceAccount:analytics-events-pipeline@search-api-v2-staging.iam.gserviceaccount.com",
     "serviceAccount:govuk-content-data-ga4@govuk-content-data.iam.gserviceaccount.com",
     "serviceAccount:govuk-looker-poc@govuk-looker-poc.iam.gserviceaccount.com",
     "serviceAccount:publishing-looker-studio-creds@govuk-publishing.iam.gserviceaccount.com",

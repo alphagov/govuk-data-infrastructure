@@ -5,6 +5,7 @@ locals {
     "serviceAccount:dataform-sa@search-api-v2-production.iam.gserviceaccount.com",
     "serviceAccount:scheduled-query-runner@gds-bq-reporting.iam.gserviceaccount.com",
     "serviceAccount:scheduled-query-runner@govuk-content-data.iam.gserviceaccount.com",
+    "serviceAccount:taxonomy-pipeline@govuk-publishing.iam.gserviceaccount.com",
   ]
 }
 

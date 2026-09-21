@@ -33,7 +33,7 @@ resource "google_dataform_repository_workflow_config" "config" {
   name           = "daily" # This isn't a great name but we need to import all existing settings
   release_config = google_dataform_repository_release_config.production.id
 
-  cron_schedule = "0 8-14 * * *"
+  cron_schedule = "0 10 * * *"
   time_zone     = "Etc/UTC"
 
   invocation_config {
@@ -59,6 +59,54 @@ resource "google_dataform_repository_workflow_config" "config" {
       database = "gds-bq-processing"
       schema   = "fastly_processing"
       name     = "process_partition"
+    }
+
+    included_targets {
+      database = "gds-bq-processing"
+      schema   = "fastly_dataform_assertions"
+      name     = "fastly_processing_user_agent_assertion"
+    }
+
+    included_targets {
+      database = "gds-bq-processing"
+      schema   = "fastly_dataform_assertions"
+      name     = "md5_duplicates_assertion"
+    }
+
+    included_targets {
+      database = "gds-bq-processing"
+      schema   = "fastly_dataform_assertions"
+      name     = "process_partition_assertion"
+    }
+
+    included_targets {
+      database = "gds-bq-processing"
+      schema   = "fastly_processing"
+      name     = "fastly_bot_processing"
+    }
+
+    included_targets {
+      database = "gds-bq-processing"
+      schema   = "fastly_processing"
+      name     = "fastly_sus_bot_processing"
+    }
+
+    included_targets {
+      database = "gds-bq-processing"
+      schema   = "fastly_processing"
+      name     = "fastly_ip_counter_inc"
+    }
+
+    included_targets {
+      database = "gds-bq-processing"
+      schema   = "fastly_processing"
+      name     = "fastly_page_views_inc"
+    }
+
+    included_targets {
+      database = "gds-bq-processing"
+      schema   = "fastly_processing"
+      name     = "fastly_site_views_inc"
     }
   }
 }

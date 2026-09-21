@@ -94,7 +94,7 @@ resource "google_dataform_repository_workflow_config" "config" {
     included_targets {
       database = "gds-bq-processing"
       schema   = "fastly_processing"
-      name     = "fastly_ip_counter_inc"    
+      name     = "fastly_ip_counter_inc"
     }
 
     included_targets {

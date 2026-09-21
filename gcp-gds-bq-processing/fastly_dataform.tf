@@ -63,50 +63,50 @@ resource "google_dataform_repository_workflow_config" "config" {
 
     included_targets {
       database = "gds-bq-processing"
-      name = "fastly_processing_user_agent_assertion"
-      schema =  "fastly_dataform_assertions"
-    }
-
-    included_targets {
-      database =  "gds-bq-processing"
-      name = "md5_duplicates_assertion"
-      schema = "fastly_dataform_assertions"
+      schema   = "fastly_dataform_assertions"
+      name     = "fastly_processing_user_agent_assertion"
     }
 
     included_targets {
       database = "gds-bq-processing"
-      name = "process_partition_assertion"
-      schema = "fastly_dataform_assertions"
+      schema   = "fastly_dataform_assertions"
+      name     = "md5_duplicates_assertion"
     }
 
     included_targets {
       database = "gds-bq-processing"
-      name = "fastly_bot_processing"
-      schema = "fastly_processing"
+      schema   = "fastly_dataform_assertions"
+      name     = "process_partition_assertion"
     }
 
     included_targets {
       database = "gds-bq-processing"
-      name = "fastly_sus_bot_processing"
-      schema = "fastly_processing"
+      schema   = "fastly_processing"
+      name     = "fastly_bot_processing"
     }
 
     included_targets {
       database = "gds-bq-processing"
-      name = "fastly_ip_counter_inc"
-      schema = "fastly_processing"
+      schema   = "fastly_processing"
+      name     = "fastly_sus_bot_processing"
     }
 
     included_targets {
       database = "gds-bq-processing"
-      name = "fastly_page_views_inc"
-      schema = "fastly_processing"
+      schema   = "fastly_processing"
+      name     = "fastly_ip_counter_inc"    
     }
 
     included_targets {
       database = "gds-bq-processing"
-      name = "fastly_site_views_inc"
-      schema = "fastly_processing"
+      schema   = "fastly_processing"
+      name     = "fastly_page_views_inc"
+    }
+
+    included_targets {
+      database = "gds-bq-processing"
+      schema   = "fastly_processing"
+      name     = "fastly_site_views_inc"
     }
   }
 }

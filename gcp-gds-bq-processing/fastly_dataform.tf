@@ -33,7 +33,7 @@ resource "google_dataform_repository_workflow_config" "config" {
   name           = "daily" # This isn't a great name but we need to import all existing settings
   release_config = google_dataform_repository_release_config.production.id
 
-  cron_schedule = "0 8-14 * * *"
+  cron_schedule = "0 10 * * *"
   time_zone     = "Etc/UTC"
 
   invocation_config {

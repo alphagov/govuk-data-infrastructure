@@ -43,5 +43,6 @@ module "scheduled_query_monitoring" {
     "66869a14-0000-2576-92ed-c82add77914c", # Content data checker
     "67234dfd-0000-2f85-9ef3-14c14ef19c68", # partition_flat_checker
     "66616cd0-0000-2ed7-b95a-14223bba1176", # raw_data_table_checker
+    "6ab441e4-0000-2032-bfde-34c7e9386bd7", # Search Console Assets Publishing - Daily Export Check
   ]
 }

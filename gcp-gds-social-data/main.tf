@@ -30,6 +30,7 @@ module "managed_project" {
   project_owners = ["group:gcp-data-infrastructure-owners@digital.cabinet-office.gov.uk"]
   project_editors = [
     "group:gcp-data-infrastructure-editors@digital.cabinet-office.gov.uk",
+    "group:gcp-gds-social-data-developers@digital.cabinet-office.gov.uk",
     "serviceAccount:1031179907628-compute@developer.gserviceaccount.com",
     "serviceAccount:gds-social-data@appspot.gserviceaccount.com",
   ]

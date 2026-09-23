@@ -24,6 +24,7 @@ provider "google" {
 module "managed_project" {
   source = "../modules/gcp-project-init"
 
+  folder_id      = ""
   project_id     = "govuk-user-feedback-dev"
   project_name   = "govuk-user-feedback-dev"
   project_owners = ["group:gcp-govuk-user-feedback-dev-owners@digital.cabinet-office.gov.uk"]

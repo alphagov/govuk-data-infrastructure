@@ -46,19 +46,19 @@ resource "google_dataform_repository_workflow_config" "config" {
     included_targets {
       database = "gds-bq-data"
       schema   = "govuk_weblogs"
+      name     = "fastly_bot_processing_final"
+    }
+
+    included_targets {
+      database = "gds-bq-data"
+      schema   = "govuk_weblogs"
+      name     = "fastly_known_bot_url_views"
+    }
+
+    included_targets {
+      database = "gds-bq-data"
+      schema   = "govuk_weblogs"
       name     = "weblog_urls"
-    }
-
-    included_targets {
-      database = "gds-bq-processing"
-      schema   = "fastly_processing"
-      name     = "fastly_processing"
-    }
-
-    included_targets {
-      database = "gds-bq-processing"
-      schema   = "fastly_processing"
-      name     = "process_partition"
     }
 
     included_targets {
@@ -88,12 +88,6 @@ resource "google_dataform_repository_workflow_config" "config" {
     included_targets {
       database = "gds-bq-processing"
       schema   = "fastly_processing"
-      name     = "fastly_sus_bot_processing"
-    }
-
-    included_targets {
-      database = "gds-bq-processing"
-      schema   = "fastly_processing"
       name     = "fastly_ip_counter_inc"
     }
 
@@ -107,6 +101,18 @@ resource "google_dataform_repository_workflow_config" "config" {
       database = "gds-bq-processing"
       schema   = "fastly_processing"
       name     = "fastly_site_views_inc"
+    }
+
+    included_targets {
+      database = "gds-bq-processing"
+      schema   = "fastly_processing"
+      name     = "fastly_sus_bot_processing"
+    }
+
+    included_targets {
+      database = "gds-bq-processing"
+      schema   = "fastly_processing"
+      name     = "process_partition"
     }
   }
 }

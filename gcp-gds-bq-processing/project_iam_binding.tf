@@ -42,5 +42,6 @@ resource "google_project_iam_binding" "processing_bigquery_job_user" {
   project = google_project.project.project_id
   role    = "roles/bigquery.jobUser"
   members = [
-    "serviceAccount:service-702876067064@gcp-sa-dataform.iam.gserviceaccount.com", # govuk-airflow-test dataform perms for Dataform service agent 
+    "serviceAccount:service-702876067064@gcp-sa-dataform.iam.gserviceaccount.com", # govuk-airflow-test dataform perms for Dataform service agent
+  ]
 }

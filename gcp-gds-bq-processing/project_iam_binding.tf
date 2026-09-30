@@ -37,3 +37,10 @@ resource "google_bigquery_dataset_iam_member" "processing_bigquery_read_access" 
   role       = "roles/bigquery.dataViewer"
   member     = "serviceAccount:service-702876067064@gcp-sa-dataform.iam.gserviceaccount.com" # govuk-airflow-test: Dataform read access for pipeline testing
 }
+
+resource "google_project_iam_binding" "processing_bigquery_job_user" {
+  project = google_project.project.project_id
+  role    = "roles/bigquery.jobUser"
+  members = [
+    "serviceAccount:service-702876067064@gcp-sa-dataform.iam.gserviceaccount.com", # govuk-airflow-test dataform perms for Dataform service agent 
+}

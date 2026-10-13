@@ -18,3 +18,10 @@ resource "google_service_account" "aggregate_analytics_pipeline_executor" {
   display_name = "Aggregate Analytics Pipeline Executor"
   description  = "Service account used by the GA4 Aggregate Analytics pipeline in gds-bq-processing to execute BigQuery jobs in the ga4-aggregate-analytics project"
 }
+
+resource "google_service_account" "custom-dataform-2" {
+  account_id   = "custom-dataform-2"
+  display_name = "custom-dataform-2"
+  project      = google_project.project.project_id
+  description  = "Publishing service account"
+}

@@ -48,3 +48,66 @@ resource "google_project_iam_custom_role" "code_viewer" {
   role_id = "code_viewer"
   title   = "Code Viewer"
 }
+
+resource "google_project_iam_custom_role" "gds_bigquery_editor" {
+  description = "Permissions to create, update and delete BigQuery datasets, tables, models, routines and saved queries"
+  permissions = [
+    "bigquery.capacityCommitments.get",
+    "bigquery.capacityCommitments.list",
+    "bigquery.config.get",
+    "bigquery.datasets.create",
+    "bigquery.datasets.get",
+    "bigquery.datasets.getIamPolicy",
+    "bigquery.datasets.setIamPolicy",
+    "bigquery.datasets.update",
+    "bigquery.datasets.updateTag",
+    "bigquery.jobs.create",
+    "bigquery.jobs.get",
+    "bigquery.models.create",
+    "bigquery.models.delete",
+    "bigquery.models.export",
+    "bigquery.models.getData",
+    "bigquery.models.getMetadata",
+    "bigquery.models.list",
+    "bigquery.models.updateData",
+    "bigquery.models.updateMetadata",
+    "bigquery.models.updateTag",
+    "bigquery.readsessions.create",
+    "bigquery.readsessions.getData",
+    "bigquery.routines.create",
+    "bigquery.routines.delete",
+    "bigquery.routines.get",
+    "bigquery.routines.list",
+    "bigquery.routines.update",
+    "bigquery.routines.updateTag",
+    "bigquery.savedqueries.create",
+    "bigquery.savedqueries.delete",
+    "bigquery.savedqueries.get",
+    "bigquery.savedqueries.list",
+    "bigquery.savedqueries.update",
+    "bigquery.tables.create",
+    "bigquery.tables.createIndex",
+    "bigquery.tables.createSnapshot",
+    "bigquery.tables.delete",
+    "bigquery.tables.deleteIndex",
+    "bigquery.tables.export",
+    "bigquery.tables.get",
+    "bigquery.tables.getData",
+    "bigquery.tables.getIamPolicy",
+    "bigquery.tables.list",
+    "bigquery.tables.replicateData",
+    "bigquery.tables.restoreSnapshot",
+    "bigquery.tables.update",
+    "bigquery.tables.updateData",
+    "bigquery.tables.updateTag",
+    "bigquery.transfers.get",
+    "bigquery.transfers.update",
+    "bigquerymigration.translation.translate",
+    "dataform.locations.get",
+    "dataform.locations.list",
+    "dataform.repositories.create",
+    "resourcemanager.projects.get"
+  ]
+  role_id = "GDS_BQ_editor"
+  title   = "GDS BQ editor"
+}

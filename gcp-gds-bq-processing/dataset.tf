@@ -21,3 +21,9 @@ resource "google_bigquery_dataset" "fastly_dataform_assertions" {
   project    = google_project.project.project_id
   location   = "europe-west2"
 }
+
+resource "google_bigquery_dataset" "publishing_processing" {
+  dataset_id = "publishing_processing"
+  project    = google_project.project.project_id
+  location   = "europe-west2"
+}

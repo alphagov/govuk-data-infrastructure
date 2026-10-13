@@ -23,5 +23,5 @@ resource "google_service_account" "custom-dataform-2" {
   account_id   = "custom-dataform-2"
   display_name = "custom-dataform-2"
   project      = google_project.project.project_id
-  description  = "Publishing service account"
+  description  = "Service account used by several publishing pipelines in govuk-publishing to execute BiqQuery jobs in govuk-publishing and gds-bq-processing"
 }

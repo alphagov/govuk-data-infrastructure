@@ -1,9 +1,9 @@
 import {
-  to = google_bigquery_dataset.fastly_dataform_assertions
-  id = "projects/gds-bq-processing/datasets/fastly_dataform_assertions"
+  to = google_service_account.feedback_processing
+  id = "projects/gds-bq-processing/serviceAccounts/feedback-processing-prod@gds-bq-processing.iam.gserviceaccount.com"
 }
 
 import {
-  to = google_bigquery_dataset.fastly_reference_data
-  id = "projects/gds-bq-processing/datasets/fastly_reference_data"
+  to = google_service_account.feedback_processing_dev
+  id = "projects/gds-bq-processing/serviceAccounts/feedback-processing-dev@gds-bq-processing.iam.gserviceaccount.com"
 }

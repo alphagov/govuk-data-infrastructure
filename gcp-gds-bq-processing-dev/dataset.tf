@@ -42,3 +42,8 @@ resource "google_bigquery_dataset" "fastly_reference_data_dev" {
   dataset_id = "fastly_reference_data_dev"
   location   = "europe-west2"
 }
+
+resource "google_bigquery_dataset" "govuk_feedback_processing_stg_s" {
+  dataset_id = "govuk_feedback_processing_stg_s"
+  location   = "europe-west2"
+}

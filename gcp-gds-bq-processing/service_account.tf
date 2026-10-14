@@ -18,3 +18,16 @@ resource "google_service_account" "aggregate_analytics_pipeline_executor" {
   display_name = "Aggregate Analytics Pipeline Executor"
   description  = "Service account used by the GA4 Aggregate Analytics pipeline in gds-bq-processing to execute BigQuery jobs in the ga4-aggregate-analytics project"
 }
+
+resource "google_service_account" "feedback_processing" {
+  project      = google_project.project.project_id
+  account_id   = "feedback-processing-prod"
+  display_name = "feedback-processing-prod"
+  description  = "Feedback Dataform Prod Workspace SA"
+}
+resource "google_service_account" "feedback_processing_dev" {
+  project      = google_project.project.project_id
+  account_id   = "feedback-processing-dev"
+  display_name = "feedback-processing-dev"
+  description  = "Feedback Dataform Dev Workspace SA "
+}

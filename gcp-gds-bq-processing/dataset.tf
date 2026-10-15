@@ -33,3 +33,9 @@ resource "google_bigquery_dataset" "govuk_feedback_processing_stg_s" {
   project    = google_project.project.project_id
   location   = "europe-west2"
 }
+
+resource "google_bigquery_dataset" "functions" {
+  dataset_id = "functions"
+  project    = google_project.project.project_id
+  location   = "europe-west2"
+}

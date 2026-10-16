@@ -7,7 +7,7 @@ resource "google_dataform_repository" "fastly_processing" {
   git_remote_settings {
     url                                 = "https://github.com/alphagov/fastly-dataform"
     default_branch                      = "main"
-    authentication_token_secret_version = "projects/578894245899/secrets/fastly_processing/versions/latest"
+    authentication_token_secret_version = "projects/${google_project.project.number}/secrets/fastly_processing/versions/latest"
   }
 
   service_account = google_service_account.data_processing.email

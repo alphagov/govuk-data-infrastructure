@@ -36,3 +36,13 @@ module "managed_project" {
   ]
   project_viewers = ["group:gcp-data-infrastructure-viewers@digital.cabinet-office.gov.uk"]
 }
+
+module "github_wif" {
+  source            = "../modules/github-wif"
+  project_id        = module.managed_project.project.project_id
+  github_repository = "alphagov/govuk-social-data"
+  sa_project_roles = [
+    "roles/artifactregistry.writer",
+    "roles/storage.objectCreator",
+  ]
+}

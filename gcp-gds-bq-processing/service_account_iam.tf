@@ -30,3 +30,10 @@ resource "google_project_iam_member" "bq_job_user" {
   role    = "roles/bigquery.jobUser"
   member  = "serviceAccount:${google_service_account.aggregate_analytics_pipeline_executor.email}"
 }
+
+resource "google_service_account_iam_member" "dataform_feedback_processing_agent_impersonation" {
+  for_each           = toset(local.dataform_sa_impersonation_roles)
+  service_account_id = google_service_account.feedback_processing.name
+  role               = each.key
+  member             = "serviceAccount:service-${google_project.project.number}@gcp-sa-dataform.iam.gserviceaccount.com"
+}

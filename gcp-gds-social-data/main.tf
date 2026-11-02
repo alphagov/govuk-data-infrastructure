@@ -43,6 +43,6 @@ module "github_wif" {
   github_repository = "alphagov/govuk-social-data"
   sa_project_roles = [
     "roles/artifactregistry.writer",
-    "roles/storage.objectCreator",
+    "roles/storage.objectUser",
   ]
 }

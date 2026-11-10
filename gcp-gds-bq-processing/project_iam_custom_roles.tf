@@ -118,8 +118,6 @@ resource "google_project_iam_custom_role" "data_engineer" {
     "dataplex.datascans.update",
     "dataplex.operations.get",
     "dataplex.operations.list",
-    "resourcemanager.projects.get",
-    "resourcemanager.projects.list",
     "bigquery.jobs.create",
     "dataform.folders.create",
     "dataform.locations.get",

@@ -84,18 +84,12 @@ resource "google_project_iam_custom_role" "data_engineer" {
 
     # Cloud Run
     "roles/run.admin",
-    "roles/run.admin",
-    "roles/run.admin",
-    "roles/run.admin",
-    "roles/run.admin",
-    "roles/iam.serviceAccountUser",
 
     # Monitoring
     "roles/monitoring.admin",
 
     # IAM / Service Accounts
     "roles/iam.serviceAccountAdmin",
-    "roles/iam.serviceAccountUser",
     "roles/iam.serviceAccountAdmin",
   ]
 }

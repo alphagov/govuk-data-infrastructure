@@ -90,6 +90,5 @@ resource "google_project_iam_custom_role" "data_engineer" {
 
     # IAM / Service Accounts
     "roles/iam.serviceAccountAdmin",
-    "roles/iam.serviceAccountAdmin",
   ]
 }

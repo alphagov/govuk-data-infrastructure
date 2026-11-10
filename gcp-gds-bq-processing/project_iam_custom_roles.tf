@@ -48,3 +48,48 @@ resource "google_project_iam_custom_role" "code_viewer" {
   role_id = "code_viewer"
   title   = "Code Viewer"
 }
+
+
+# Data Engineer custom role
+resource "google_project_iam_custom_role" "data_engineer" {
+  role_id     = "data_engineer"
+  title       = "Data Engineer"
+  description = "Provides Data Engineers with the permissions required to develop, deploy and maintain data pipelines and supporting GCP resources."
+
+  permissions = [
+    # BigQuery
+    "roles/bigquery.dataEditor",
+    "roles/bigquery.jobUser",
+    "roles/bigquery.resourceViewer",
+    "bigquery.datasets.getIamPolicy",
+    "bigquery.datasets.setIamPolicy",
+
+    # Dataform
+    "roles/dataform.admin",
+    "roles/iam.serviceAccountUser",
+
+    # Cloud Storage
+    "storage.buckets.create",
+    "storage.buckets.delete",
+    "storage.buckets.get",
+    "storage.buckets.list",
+    "storage.buckets.update",
+    "storage.buckets.getIamPolicy",
+    "storage.buckets.setIamPolicy",
+    "storage.objects.get",
+    "storage.objects.list",
+    "storage.objects.create",
+    "storage.objects.update",
+    "storage.objects.delete",
+
+    # Cloud Run
+    "roles/run.admin",
+
+    # Monitoring
+    "roles/monitoring.admin",
+
+    # IAM / Service Accounts
+    "roles/iam.serviceAccountAdmin",
+    "roles/iam.serviceAccountAdmin",
+  ]
+}

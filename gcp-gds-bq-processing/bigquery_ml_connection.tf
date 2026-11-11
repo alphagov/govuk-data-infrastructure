@@ -2,7 +2,7 @@
 # 1. BIGQUERY CLOUD RESOURCE CONNECTION
 # =========================================================================
 
-resource "google_bigquery_connection" "feedback-bq-ml-connection" {
+resource "google_bigquery_connection" "feedback_bq_ml_connection" {
   project       = google_project.project.project_id
   location      = var.region
   connection_id = "feedback-bq-ml-connection"
@@ -17,10 +17,10 @@ resource "google_bigquery_connection" "feedback-bq-ml-connection" {
 # =========================================================================
 
 # INBOUND: Allow custom Service Accounts to use the BigQuery Connection
-resource "google_bigquery_connection_iam_binding" "feedback-bq-ml-connection_binding" {
+resource "google_bigquery_connection_iam_binding" "feedback_bq_ml_connection_binding" {
   project       = google_project.project.project_id
   location      = var.region
-  connection_id = google_bigquery_connection.feedback-bq-ml-connection.connection_id
+  connection_id = google_bigquery_connection.feedback_bq_ml_connection.connection_id
   role          = "roles/bigquery.connectionUser"
   members = [
     "serviceAccount:${google_service_account.feedback_processing.email}",
@@ -32,7 +32,7 @@ resource "google_bigquery_connection_iam_binding" "feedback-bq-ml-connection_bin
 resource "google_project_iam_member" "bq_connection_vertex_user" {
   project = google_project.project.project_id
   role    = "roles/aiplatform.user"
-  member  = "serviceAccount:${google_bigquery_connection.feedback-bq-ml-connection.cloud_resource[0].service_account_id}"
+  member  = "serviceAccount:${google_bigquery_connection.feedback_bq_ml_connection.cloud_resource[0].service_account_id}"
 }
 
 # Wait 30s for IAM propagation before executing the BigQuery CREATE MODEL job
@@ -41,7 +41,7 @@ resource "time_sleep" "wait_for_vertex_iam" {
 
   depends_on = [
     google_project_iam_member.bq_connection_vertex_user,
-    google_bigquery_connection_iam_binding.feedback-bq-ml-connection_binding
+    google_bigquery_connection_iam_binding.feedback_bq_ml_connection_binding
   ]
 }
 
@@ -52,7 +52,7 @@ resource "time_sleep" "wait_for_vertex_iam" {
 locals {
   create_gemini_model_sql = <<-EOT
     CREATE OR REPLACE MODEL `${google_project.project.project_id}.govuk_feedback_processing_stg_s.feedback_bq_ml_gemini_model_london`
-    REMOTE WITH CONNECTION `projects/${google_project.project.project_id}/locations/${var.region}/connections/${google_bigquery_connection.feedback-bq-ml-connection.connection_id}`
+    REMOTE WITH CONNECTION `projects/${google_project.project.project_id}/locations/${var.region}/connections/${google_bigquery_connection.feedback_bq_ml_connection.connection_id}`
     OPTIONS (
       -- Pointing to the regional endpoint strictly enforces local ML processing in London
       ENDPOINT = 'https://${var.region}-aiplatform.googleapis.com/v1/projects/${google_project.project.project_id}/locations/${var.region}/publishers/google/models/gemini-3.5-flash'
@@ -68,7 +68,10 @@ resource "google_bigquery_job" "create_gemini_model" {
   job_id = "create_gemini_model_${md5(local.create_gemini_model_sql)}"
 
   query {
-    query = local.create_gemini_model_sql
+    query              = local.create_gemini_model_sql
+    create_disposition = ""
+    write_disposition  = ""
+    use_legacy_sql     = false
   }
 
   depends_on = [

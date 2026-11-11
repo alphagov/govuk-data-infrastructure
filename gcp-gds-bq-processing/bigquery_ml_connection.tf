@@ -5,7 +5,7 @@
 resource "google_bigquery_connection" "feedback_bq_ml_connection" {
   project       = google_project.project.project_id
   location      = var.region
-  connection_id = "feedback-bq-ml-connection"
+  connection_id = local.connection_id
   friendly_name = "BigQuery ML Remote Function Connector"
   description   = "BigQuery regional connection (europe-west2/London) to Vertex AI for Gemini model predictions."
 
@@ -50,9 +50,13 @@ resource "time_sleep" "wait_for_vertex_iam" {
 # =========================================================================
 
 locals {
+  # Define the connection ID statically to break the "known after apply" dependency loop
+  connection_id = "feedback-bq-ml-connection"
+
+  # Using the static local variable connection_id
   create_gemini_model_sql = <<-EOT
     CREATE OR REPLACE MODEL `${google_project.project.project_id}.govuk_feedback_processing_stg_s.feedback_bq_ml_gemini_model_london`
-    REMOTE WITH CONNECTION `projects/${google_project.project.project_id}/locations/${var.region}/connections/${google_bigquery_connection.feedback_bq_ml_connection.connection_id}`
+    REMOTE WITH CONNECTION `projects/${google_project.project.project_id}/locations/${var.region}/connections/${local.connection_id}`
     OPTIONS (
       -- Pointing to the regional endpoint strictly enforces local ML processing in London
       ENDPOINT = 'https://${var.region}-aiplatform.googleapis.com/v1/projects/${google_project.project.project_id}/locations/${var.region}/publishers/google/models/gemini-3.5-flash'
@@ -60,12 +64,20 @@ locals {
   EOT
 }
 
+# Generates a random suffix that ONLY changes when the SQL query is modified
+resource "random_id" "model_job_suffix" {
+  byte_length = 8
+  keepers = {
+    sql = local.create_gemini_model_sql
+  }
+}
+
 resource "google_bigquery_job" "create_gemini_model" {
   project  = google_project.project.project_id
   location = var.region
 
-  # Appending the MD5 hash triggers a new job ONLY if you modify the SQL above
-  job_id = "create_gemini_model_${md5(local.create_gemini_model_sql)}"
+  # This ID stays completely stable until the SQL query is modified
+  job_id = "create_gemini_model_${random_id.model_job_suffix.hex}"
 
   query {
     query              = local.create_gemini_model_sql

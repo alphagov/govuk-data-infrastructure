@@ -119,11 +119,6 @@ resource "google_project_iam_custom_role" "data_engineer" {
     "dataplex.operations.get",
     "dataplex.operations.list",
     "bigquery.jobs.create",
-          "dataform.folders.create",
-          "dataform.locations.get",
-          "dataform.locations.list",
-          "dataform.repositories.create",
-          "dataform.repositories.list",
     "bigquery.bireservations.get",
     "bigquery.capacityCommitments.get",
     "bigquery.capacityCommitments.list",
@@ -157,6 +152,11 @@ resource "google_project_iam_custom_role" "data_engineer" {
     "dataform.compilationResults.query",
     "dataform.config.get",
     "dataform.config.update",
+    "dataform.folders.create",
+    "dataform.locations.get",
+    "dataform.locations.list",
+    "dataform.repositories.create",
+    "dataform.repositories.list",
     "dataform.folders.addContents",
     "dataform.folders.delete",
     "dataform.folders.deleteTree",
@@ -445,6 +445,6 @@ resource "google_project_iam_custom_role" "data_engineer" {
 
     # logging - at least log viewer and configuration writer
     # Workflow
-    # Airflow?
+    # Airflow
   ]
 }

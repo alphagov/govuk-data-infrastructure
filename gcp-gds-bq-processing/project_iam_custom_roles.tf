@@ -53,7 +53,7 @@ resource "google_project_iam_custom_role" "code_viewer" {
 # Data Engineer custom role
 resource "google_project_iam_custom_role" "data_engineer" {
   role_id     = "data_engineer"
-  title       = "Data Engineer"
+  title       = "GDS Data Engineer"
   description = "Provides Data Engineers with the permissions required to develop, deploy and maintain data pipelines and supporting GCP resources."
 
   permissions = [
@@ -119,11 +119,11 @@ resource "google_project_iam_custom_role" "data_engineer" {
     "dataplex.operations.get",
     "dataplex.operations.list",
     "bigquery.jobs.create",
-    "dataform.folders.create",
-    "dataform.locations.get",
-    "dataform.locations.list",
-    "dataform.repositories.create",
-    "dataform.repositories.list",
+          "dataform.folders.create",
+          "dataform.locations.get",
+          "dataform.locations.list",
+          "dataform.repositories.create",
+          "dataform.repositories.list",
     "bigquery.bireservations.get",
     "bigquery.capacityCommitments.get",
     "bigquery.capacityCommitments.list",
@@ -237,6 +237,7 @@ resource "google_project_iam_custom_role" "data_engineer" {
     "iam.serviceAccounts.actAs",
     "iam.serviceAccounts.get",
     "iam.serviceAccounts.list",
+
     # Cloud Storage
     "storage.buckets.create",
     "storage.buckets.delete",
@@ -250,6 +251,7 @@ resource "google_project_iam_custom_role" "data_engineer" {
     "storage.objects.create",
     "storage.objects.update",
     "storage.objects.delete",
+
     # Cloud Run
     "recommender.locations.get",
     "recommender.locations.list",
@@ -346,6 +348,7 @@ resource "google_project_iam_custom_role" "data_engineer" {
     "run.workerpools.sshRead",
     "run.workerpools.sshRoot",
     "run.workerpools.update",
+
     # Monitoring
     "cloudnotifications.activities.list",
     "monitoring.alertPolicies.create",
@@ -426,6 +429,7 @@ resource "google_project_iam_custom_role" "data_engineer" {
     "serviceusage.values.test",
     "stackdriver.resourceMetadata.list",
     "stackdriver.resourceMetadata.write",
+
     # IAM / Service Accounts
     "iam.serviceAccountApiKeyBindings.create",
     "iam.serviceAccountApiKeyBindings.delete",
@@ -438,5 +442,9 @@ resource "google_project_iam_custom_role" "data_engineer" {
     "iam.serviceAccounts.setIamPolicy",
     "iam.serviceAccounts.undelete",
     "iam.serviceAccounts.update",
+
+    # logging - at least log viewer and configuration writer
+    # Workflow
+    # Airflow?
   ]
 }

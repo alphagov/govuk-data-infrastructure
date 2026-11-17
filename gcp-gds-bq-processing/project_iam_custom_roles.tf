@@ -52,5 +52,5 @@ resource "google_project_iam_custom_role" "code_viewer" {
 
 # Data Engineer custom role
 module "data_engineer_custom_role" {
-  source = "../modules/data_engineer_custom_role"
+  source = "../modules/gds-data-eng-role"
 }

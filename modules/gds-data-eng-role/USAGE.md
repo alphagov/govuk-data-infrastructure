@@ -7,7 +7,9 @@
 
 ## Inputs
 
-No inputs.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_project_id"></a> [project\_id](#input\_project\_id) | The GCP project in which to create the GDS Data Engineer custom role | `string` | n/a | yes |
 
 ## Outputs
 

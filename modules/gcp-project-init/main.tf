@@ -13,8 +13,9 @@ resource "google_project" "project" {
   project_id      = var.project_id
   folder_id       = var.folder_id
   billing_account = var.billing_account
+  deletion_policy = var.prevent_destroy ? "PREVENT" : "DELETE"
 
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 }

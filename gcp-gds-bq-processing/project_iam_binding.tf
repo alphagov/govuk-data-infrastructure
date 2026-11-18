@@ -37,3 +37,9 @@ resource "google_bigquery_dataset_iam_member" "processing_bigquery_read_access" 
   role       = "roles/bigquery.dataViewer"
   member     = "serviceAccount:service-702876067064@gcp-sa-dataform.iam.gserviceaccount.com" # govuk-airflow-test: Dataform read access for pipeline testing
 }
+
+resource "google_project_iam_member" "data_engineer" {
+  project = google_project.project.project_id
+  role    = module.data_engineer_custom_role.role_name
+  member  = "group:gcp-gds-data-engineers@digital.cabinet-office.gov.uk"
+}

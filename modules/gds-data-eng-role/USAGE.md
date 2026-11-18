@@ -11,5 +11,7 @@ No inputs.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_role_name"></a> [role\_name](#output\_role\_name) | Full resource name of the GDS Data Engineer custom role |
 <!-- END_TF_DOCS -->

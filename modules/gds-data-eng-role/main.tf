@@ -1,5 +1,5 @@
 resource "google_project_iam_custom_role" "data_engineer" {
-  # project     = var.project_id
+  project     = var.project_id
   role_id     = "data_engineer"
   title       = "GDS Data Engineer"
   description = "Provides Data Engineers with the permissions required to develop, deploy and maintain data pipelines and supporting GCP resources."

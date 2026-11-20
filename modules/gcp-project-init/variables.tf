@@ -20,6 +20,12 @@ variable "folder_id" {
   default     = "278098142879"
 }
 
+variable "prevent_destroy" {
+  description = "Whether to prevent Terraform from deleting the GCP project."
+  type        = bool
+  default     = false
+}
+
 variable "terraform_service_account" {
   description = "The Terraform service account email to be hard-coded as an owner."
   type        = string

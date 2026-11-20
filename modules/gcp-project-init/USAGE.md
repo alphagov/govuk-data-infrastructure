@@ -13,6 +13,7 @@
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | The name of the GCP project. | `string` | n/a | yes |
 | <a name="input_billing_account"></a> [billing\_account](#input\_billing\_account) | The default billing account ID to associate with the project. | `string` | `"015C7A-FAF970-B0D375"` | no |
 | <a name="input_folder_id"></a> [folder\_id](#input\_folder\_id) | The Folder ID to create the project under. | `string` | `"278098142879"` | no |
+| <a name="input_prevent_destroy"></a> [prevent\_destroy](#input\_prevent\_destroy) | Whether to prevent Terraform from deleting the GCP project. | `bool` | `false` | no |
 | <a name="input_project_editors"></a> [project\_editors](#input\_project\_editors) | A list of IAM members (users, groups, or SAs) to be granted roles/editor. | `list(string)` | <pre>[<br/>  "group:gcp-data-infrastructure-editors@digital.cabinet-office.gov.uk"<br/>]</pre> | no |
 | <a name="input_project_owners"></a> [project\_owners](#input\_project\_owners) | A list of IAM members (users, groups, or SAs) to be granted roles/owner. | `list(string)` | <pre>[<br/>  "group:gcp-data-infrastructure-owners@digital.cabinet-office.gov.uk"<br/>]</pre> | no |
 | <a name="input_project_viewers"></a> [project\_viewers](#input\_project\_viewers) | A list of IAM members (users, groups, or SAs) to be granted roles/viewer. | `list(string)` | <pre>[<br/>  "group:gcp-data-infrastructure-viewers@digital.cabinet-office.gov.uk"<br/>]</pre> | no |

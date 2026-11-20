@@ -34,4 +34,6 @@ module "managed_project" {
     "serviceAccount:sde-consent-api@appspot.gserviceaccount.com",
   ]
   project_viewers = ["group:gcp-data-infrastructure-viewers@digital.cabinet-office.gov.uk"]
+
+  prevent_destroy = false
 }

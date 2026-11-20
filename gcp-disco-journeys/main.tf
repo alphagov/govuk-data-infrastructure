@@ -37,4 +37,6 @@ module "managed_project" {
     "group:gcp-data-infrastructure-viewers@digital.cabinet-office.gov.uk",
 
   ]
+
+  prevent_destroy = false
 }

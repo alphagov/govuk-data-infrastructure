@@ -33,4 +33,6 @@ module "managed_project" {
     "serviceAccount:57901468546-compute@developer.gserviceaccount.com",
   ]
   project_viewers = ["group:gcp-data-infrastructure-viewers@digital.cabinet-office.gov.uk"]
+
+  prevent_destroy = false
 }

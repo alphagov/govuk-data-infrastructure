@@ -30,4 +30,6 @@ module "managed_project" {
   project_owners  = ["group:gcp-data-infrastructure-owners@digital.cabinet-office.gov.uk"]
   project_editors = ["group:gcp-data-infrastructure-editors@digital.cabinet-office.gov.uk"]
   project_viewers = ["group:gcp-data-infrastructure-viewers@digital.cabinet-office.gov.uk"]
+
+  prevent_destroy = false
 }

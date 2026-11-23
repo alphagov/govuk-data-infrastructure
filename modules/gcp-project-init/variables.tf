@@ -23,7 +23,7 @@ variable "folder_id" {
 variable "prevent_destroy" {
   description = "Whether to prevent Terraform from deleting the GCP project."
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "terraform_service_account" {

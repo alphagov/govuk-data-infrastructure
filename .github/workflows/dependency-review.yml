@@ -7,4 +7,4 @@ permissions:
 jobs:
   dependency-review:
     name: Dependency Review scan
-    uses: alphagov/govuk-infrastructure/.github/workflows/dependency-review.yml@main
+    uses: alphagov/govuk-infrastructure/.github/workflows/dependency-review.yml@46e660330113ffc71ee8b09943c451f15306d9f7 # main

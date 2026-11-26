@@ -10,7 +10,12 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = "~> 8.11.0"
+      version = "~> 8.0"
+    }
+
+    google-beta = {
+      source  = "hashicorp/google-beta"
+      version = "~> 8.0"
     }
   }
 
@@ -18,6 +23,10 @@ terraform {
 }
 
 provider "google" {
+  project = "govuk-s3-mirror"
+}
+
+provider "google-beta" {
   project = "govuk-s3-mirror"
 }
 
@@ -30,6 +39,8 @@ module "managed_project" {
     "group:govgraph-developers@digital.cabinet-office.gov.uk",
     "group:govuk-gcp-access@digital.cabinet-office.gov.uk",
   ]
-  project_editors = ["serviceAccount:384988117066-compute@developer.gserviceaccount.com"]
+  project_editors = [
+    "serviceAccount:384988117066-compute@developer.gserviceaccount.com",
+  ]
   project_viewers = []
 }

@@ -46,3 +46,10 @@ module "github_wif" {
     "roles/storage.objectUser",
   ]
 }
+
+resource "google_secret_manager_secret_iam_member" "composer_threads_token_writer" {
+  project   = "gds-social-data"
+  secret_id = "threads_long_lived_access_token"
+  role      = "roles/secretmanager.secretVersionAdder"
+  member    = "serviceAccount:composer-social-ingestion@gds-social-data.iam.gserviceaccount.com"
+}

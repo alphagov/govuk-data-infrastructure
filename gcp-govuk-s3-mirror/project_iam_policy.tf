@@ -11,7 +11,6 @@ data "google_iam_policy" "project" {
       "group:govgraph-developers@digital.cabinet-office.gov.uk",
       "group:gcp-data-infrastructure-owners@digital.cabinet-office.gov.uk",
       "group:govuk-gcp-access@digital.cabinet-office.gov.uk",
-      "serviceAccount:terraform-cloud-production@govuk-production.iam.gserviceaccount.com",
     ]
   }
 

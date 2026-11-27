@@ -50,6 +50,7 @@ data "google_iam_policy" "bucket_govuk_database_backups" {
     role = "roles/storage.legacyBucketReader"
     members = [
       "projectViewer:govuk-s3-mirror",
+      "serviceAccount:${data.google_storage_transfer_project_service_account.default.email}",
     ]
   }
 
@@ -65,6 +66,13 @@ data "google_iam_policy" "bucket_govuk_database_backups" {
     role = "roles/storage.legacyObjectReader"
     members = [
       "projectViewer:govuk-s3-mirror",
+    ]
+  }
+
+  binding {
+    role = "roles/storage.objectAdmin"
+    members = [
+      "serviceAccount:${data.google_storage_transfer_project_service_account.default.email}",
     ]
   }
 
